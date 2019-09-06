@@ -1,0 +1,56 @@
+logging:
+    level:
+        ROOT: INFO
+        org: INFO
+        com.vk.spring: INFO
+spring:
+    application:
+        name: spring-boot-jpa
+    jmx:
+        enabled: false
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        url: jdbc:oracle:thin:@<database_server_name>:<port>:<db_name>
+        username: USER
+        password: USER        
+        hikari:
+            poolName: Hikari
+            auto-commit: false
+    jpa:
+        database-platform: org.hibernate.dialect.Oracle12cDialect
+        database: ORACLE
+        show-sql: false
+        open-in-view: false
+        properties:
+            # hibernate.jdbc.time_zone: UTC
+            hibernate.id.new_generator_mappings: true
+            hibernate.proc.param_null_passing: true
+            hibernate.connection.provider_disables_autocommit: true
+            hibernate.cache.use_second_level_cache: false
+            hibernate.cache.use_query_cache: false
+            hibernate.generate_statistics: false
+        hibernate:
+            ddl-auto: none
+            naming:
+                physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+                implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy                    
+    data:
+        jpa:
+            repositories:
+                bootstrap-mode: deferred
+        
+    messages:
+        basename: i18n/messages
+    main:
+        allow-bean-definition-overriding: true
+    mvc:
+        favicon:
+            enabled: false
+    thymeleaf:
+        mode: HTML
+server:
+    servlet:
+        session:
+            cookie:
+                http-only: true
+    port: 8080
