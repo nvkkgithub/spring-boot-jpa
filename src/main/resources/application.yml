@@ -10,9 +10,9 @@ spring:
         enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:oracle:thin:@<database_server_name>:<port>:<db_name>
-        username: USER
-        password: USER        
+        url: jdbc:oracle:thin:@<url>:<port>:<db>
+        username: user
+        password: user
         hikari:
             poolName: Hikari
             auto-commit: false

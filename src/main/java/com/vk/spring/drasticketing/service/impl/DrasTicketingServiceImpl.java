@@ -1,6 +1,8 @@
 package com.vk.spring.drasticketing.service.impl;
 
 import com.vk.spring.drasticketing.dao.DrasTicketingDao;
+import com.vk.spring.drasticketing.dto.InputRequestVo;
+import com.vk.spring.drasticketing.dto.ResponseInformationVo;
 import com.vk.spring.drasticketing.service.DrasTicketingService;
 
 import org.slf4j.Logger;
@@ -18,11 +20,20 @@ public class DrasTicketingServiceImpl implements DrasTicketingService {
     @Autowired
     DrasTicketingDao drasTicketingDao;
 
+    @Transactional(readOnly = true)
+    public boolean checkIfDataIsPresent() {
+       return drasTicketingDao.checkIfDataIsPresent();
+    }
+
     @Transactional(readOnly = false)
-    public void insertIntoRcotrnfildat(String contents){
-        LOG.info("Contents are= "+contents);
-        drasTicketingDao.insertIntoRcotrnfildat(contents);
+    public void insertIntoRcotrnfildat(InputRequestVo request){
+        LOG.info("Contents are= "+request);
+        drasTicketingDao.insertIntoRcotrnfildat(request);
 
     }
     
+    @Transactional(readOnly = true)
+    public ResponseInformationVo invokeStoredProcedure(){
+        return drasTicketingDao.invokeStoredProcedure();
+    }
 }

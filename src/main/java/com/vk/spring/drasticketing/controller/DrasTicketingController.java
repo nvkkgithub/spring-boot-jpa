@@ -1,6 +1,7 @@
 package com.vk.spring.drasticketing.controller;
 
 import com.vk.spring.drasticketing.dto.InputRequestVo;
+import com.vk.spring.drasticketing.dto.ResponseInformationVo;
 import com.vk.spring.drasticketing.service.DrasTicketingService;
 
 import org.slf4j.Logger;
@@ -24,14 +25,25 @@ public class DrasTicketingController {
     	return ResponseEntity.ok("OK");
     }
 
+    @RequestMapping(value = "/checkIfRecordsExists")
+    public Boolean checkIfRecordsExists() {
+        return drasTicketingService.checkIfDataIsPresent();
+    }
+
     @RequestMapping(value = "/processPdfData", method = RequestMethod.POST, consumes = "application/json")
     public ResponseEntity<Object> processPdfData(@RequestBody InputRequestVo request) {
         
-        LOG.info("Request="+request.toString());
+        LOG.info("Request="+request);
 
-        drasTicketingService.insertIntoRcotrnfildat(request.getRequest());
+        drasTicketingService.insertIntoRcotrnfildat(request);
 
     	return ResponseEntity.ok("SUCCESS");
 
     }
+
+    @RequestMapping(value = "/invokeStoredProcedure")
+    public ResponseInformationVo processPdfData() {
+        return drasTicketingService.invokeStoredProcedure();
+    }
+
 }

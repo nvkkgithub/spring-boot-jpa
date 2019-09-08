@@ -1,8 +1,13 @@
 package com.vk.spring.drasticketing.dao;
 
+import com.vk.spring.drasticketing.dto.InputRequestVo;
+import com.vk.spring.drasticketing.dto.ResponseInformationVo;
 
 public interface DrasTicketingDao {
 
-    void insertIntoRcotrnfildat(String contents);
+    int insertIntoRcotrnfildat(InputRequestVo request);
     
+    boolean checkIfDataIsPresent();
+
+    ResponseInformationVo invokeStoredProcedure();
 }

@@ -9,7 +9,16 @@ public class InputRequestVo implements Serializable {
      */
     private static final long serialVersionUID = 1L;
 
+    private int counter;
     private String request;
+
+    public void setCounter(int counter){
+        this.counter = counter;
+    }
+
+    public int getCounter(){
+        return counter;
+    }
 
     public void setRequest(String request){
         this.request = request;
@@ -20,6 +29,6 @@ public class InputRequestVo implements Serializable {
     }
 
     public String toString(){
-        return "request="+request;
+        return "counter="+counter+", request="+request;
     }
 }
